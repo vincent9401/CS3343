@@ -40,6 +40,7 @@ public class ConnectFour {
 		}
 	}
 
+	// Put a token into the game board
 	public static void putTokenIntoGameBoard(String[][] gameBoard, String inputColumn, String playerToken) {
 		// Check the game board from bottom row to top row
 		for (int i = gameBoard.length - 1; i >= 0; i--) {
