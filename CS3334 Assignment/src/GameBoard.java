@@ -21,6 +21,8 @@ public class GameBoard {
 		
 	}
 	
+	
+	
 	// Put a token into the game board
 	public void putTokenIntoGameBoard(String inputColumn, boolean playerRound) {
 		// boolean playerRound 
@@ -54,4 +56,76 @@ public class GameBoard {
 		}
 		return true;
 	}
+	
+	public ConnectedBlock ConnectFourInColumn(String playerSymbol){
+		int startColumn = -1;
+		int startRow = -1;
+		int endRow = -1;
+		
+		
+		for(int column = 0; column < GameInstances.BOARD_COLUMN; column++){
+			startColumn = column;
+			for(int row = GameInstances.BOARD_ROW-1; row >= 0; row--){
+				
+				//System.out.println(" row : "+row+" column : "+column+" startRow : "+ startRow+" endRow : "+ endRow);
+				
+				if((this._gameBoard[row][column]).equals("*")){
+					
+					break;
+				}
+				else if((this._gameBoard[row][column]).equals(playerSymbol)){
+					if(startRow < 0 ){
+						startRow = row;
+					}
+					endRow = row;
+				}
+				else{
+					startRow = -1;
+					endRow = -1;
+				}
+				
+				if((startRow - endRow) >= 3){
+					ConnectedBlock cb = new ConnectedBlock(startRow, startColumn, endRow, startColumn, GameInstances.CONNECT_TYPE[0]);
+					return cb;
+				}
+			}
+		}
+		
+		return null;
+	}
+	
+	public ConnectedBlock ConnectFourInRow(String playerSymbol){
+		int startColumn = -1;
+		int endColumn = -1;
+		int startRow = -1;
+		
+		for(int row = GameInstances.BOARD_ROW-1; row >= 0; row--){
+			startRow = row;	
+			for(int column = 0; column < GameInstances.BOARD_COLUMN; column++){
+				
+				//System.out.println(" row : "+row+" column : "+column+" startRow : "+ startRow+" endRow : "+ startRow);
+				
+				if((this._gameBoard[row][column]).equals(playerSymbol)){
+					if(startColumn < 0 ){
+						startColumn = column;
+					}
+					endColumn = column;
+				}
+				else{
+					startColumn = -1;
+					endColumn = -1;
+				}
+				
+				if((endColumn - startColumn) >= 3){
+					ConnectedBlock cb = new ConnectedBlock(startRow, startColumn, startRow, endColumn, GameInstances.CONNECT_TYPE[1]);
+					return cb;
+				}
+				
+			}
+		}
+			
+		return null;
+	}
+	
+	
 }

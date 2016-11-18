@@ -5,10 +5,12 @@ import java.util.Scanner;
 public class GameController {
 	private GameBoard _gameBoard;
 	private GameScreenOutputController _outputController;
+	private AlphaGo _alphaGo;
 	
 	public GameController(){
 		this._gameBoard = new GameBoard();
 		this._outputController = new GameScreenOutputController();
+		this._alphaGo = new AlphaGo(this._gameBoard);
 	}
 	
 	public boolean isPlayerFirst(){
@@ -45,15 +47,29 @@ public class GameController {
 		String message = playerRound ? GameInstances.PLAYER_FIRST : GameInstances.ROBOT_FIRST;
 		outputController.printMessage(message);
 		
-		outputController.printGameBoard(gameBoard);
 		
-		if(playerRound){
-			outputController.printMessage(GameInstances.INPUT_OPTION_MENU);
-			String input = this.getColumnIndex();
-			outputController.printMessage(GameInstances.SHOW_INPUTED_COLUMN_INDEX + input+"\n");
-			gameBoard.putTokenIntoGameBoard(input, playerRound);
+		
+		while(!this.isWin(gameBoard) && !gameBoard.isGameBoardFull()){
+			outputController.printGameBoard(gameBoard);
+		
+			if(playerRound){// playerRound = true -> means that there is the human player round
+				outputController.printMessage(GameInstances.INPUT_OPTION_MENU);
+				String input = this.getColumnIndex();
+				outputController.printMessage(GameInstances.SHOW_INPUTED_COLUMN_INDEX + input+"\n");
+				gameBoard.putTokenIntoGameBoard(input, playerRound);
+				outputController.printGameBoard(gameBoard);
+
+				
+				break;
+			}
+			else{// playerRound = flase -> means that there is the robot round
+				//TODO
+			}
 		}
-		outputController.printGameBoard(gameBoard);
 		
+	}
+	
+	public boolean isWin(GameBoard gameBoard){
+		return false;//TODO
 	}
 }

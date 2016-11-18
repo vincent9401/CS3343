@@ -10,6 +10,8 @@ public class GameInstances {
 	public final static String INCORRECT_COLUMN_INDEX = "Invalid column, input again!: ";
 	public final static String SHOW_INPUTED_COLUMN_INDEX = "Your input: ";
 	
+	public final static String[] CONNECT_TYPE = {"column_connect", "row_connect", "slop_connect"};
+	
 	public static final String PLAYER_TOKEN = "X";
 	public static final String ROBOT_TOKEN = "O";
 	public static final int BOARD_ROW = 6;
