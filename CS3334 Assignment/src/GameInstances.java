@@ -4,6 +4,11 @@ import java.util.Map;
 public class GameInstances {
 	public final static String PLAYER_FIRST = "Player starts the game first!";
 	public final static String ROBOT_FIRST = "Computer starts the game first!";
+	public final static String PLAYER_ROUND = "Player's Round";
+	public final static String ROBOT_ROUND = "Robot's Round";
+	public final static String INPUT_OPTION_MENU = "Which column you want to input? (A-G): ";
+	public final static String INCORRECT_COLUMN_INDEX = "Invalid column, input again!: ";
+	public final static String SHOW_INPUTED_COLUMN_INDEX = "Your input: ";
 	
 	public static final String PLAYER_TOKEN = "X";
 	public static final String ROBOT_TOKEN = "O";

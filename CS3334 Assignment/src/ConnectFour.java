@@ -6,47 +6,55 @@ public class ConnectFour {
 
 	public static void main(String args[]) {
 
-		GameBoard gameBoard = new GameBoard();
+		
 		GameController gameController = new GameController();
-		GameScreenOutputController outputController = new GameScreenOutputController();
-		
-		gameBoard.initializeGameBoard();
-		
-		String message = gameController.isPlayerFirst() ? GameInstances.PLAYER_FIRST : GameInstances.ROBOT_FIRST;
-		outputController.printMessage(message);
-		
-		Scanner sc = new Scanner(System.in);
-
-		// Use to find out who should take the turn
-		int counter = 0;
-
-		while (!gameBoard.isGameBoardFull()) {
+		gameController.playGame();
+//		
+//		
+//		
+//		
+//		
+//		
+//		
+//		Scanner sc = new Scanner(System.in);
+//
+//		// Use to find out who should take the turn
+//		int counter = 0;
+//
+//		while (!gameBoard.isGameBoardFull()) {
+//			
+//			outputController.printGameBoard(gameBoard);
+//			
 			
-			outputController.printGameBoard(gameBoard);
-			String token;
 //			if (counter % 2 == 0) {
-//				System.out.println("Player's turn!");
+//				System.out.println(ROUND);
 //				token = playerToken;
 //			} else {
 //				System.out.println("Robot's turn!");
 //				token = robotToken;
 //			}
 //			
-			System.out.print("Which column you want to input? (A-G): ");
-//			String inputColumn = sc.next();
-//			while (!Arrays.asList(GameBoard.COLUMN_NAME).contains(inputColumn)) {
-//				System.out.print("Invalid column, input again!: ");
+//			System.out.print(GameInstances.INPUT_OPTION_MENU);
+//			String inputColumn = sc.next();// TODO handle the incorrect input 
+//			boolean isCorrectInput = true;
+//			
+//			
+//			//while (isCorrectInput) {
+//				sc.reset();
 //				inputColumn = sc.next();
-//			}
+//				isCorrectInput = gameController.isCorrectColumnIndex(inputColumn);
+//				//if(isCorrectInput){
+//				//	outputController.printMessage(GameInstances.INCORRECT_COLUMN_INDEX);
+//				//}
+//			//}
 //			System.out.println("Your input: " + inputColumn);
 //			System.out.println();
-//			
-//			putTokenIntoGameBoard(gameBoard, inputColumn, token);
-//			counter++;
-			break;
-		}
+//			gameBoard.putTokenIntoGameBoard(inputColumn, playerRound);
+////			counter++;
+//			break;
+//		}
 	}
-
+	
 }
 	
 	
