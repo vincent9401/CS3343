@@ -26,8 +26,8 @@ public class GameBoard {
 	// Put a token into the game board
 	public void putTokenIntoGameBoard(String inputColumn, boolean playerRound) {
 		// boolean playerRound 
-		// player = true -> human player round
-		// player = false -> robot round
+		// When player = true -> human player round
+		// When player = false -> robot round
 		String playerToken = playerRound ? GameInstances.PLAYER_TOKEN : GameInstances.ROBOT_TOKEN;
 			
 		for(int i =  this._gameBoard.length -1; i >= 0; i--){
@@ -122,6 +122,142 @@ public class GameBoard {
 				}
 				
 			}
+		}
+			
+		return null;
+	}
+	
+	public ConnectedBlock ConnectFourInRightSlope(String playerSymbol){
+		final int INIT_CHECKING_ROW = GameInstances.BOARD_ROW-1;
+		final int INIT_CHECKING_COLUMN = 0;
+		final int FINAL_CHECK_ROW = 0;
+		final int FINAL_CHECK_COLUMN = GameInstances.BOARD_COLUMN-1;
+		
+		int currentRow = INIT_CHECKING_ROW;
+		int currentColumn = INIT_CHECKING_COLUMN;
+		boolean isContinue = true;  
+		
+		while(isContinue){
+			
+			//System.out.println("");
+			//System.out.println("Outer_Row: "+currentRow +" Outer_Column: "+ currentColumn);
+
+			
+			int innerRow = currentRow;
+			int innerColumn = currentColumn;
+			int startRow = -1;
+			int startColumn = -1;
+			int endRow =1;
+			int endColumn = -1;
+			
+			while((innerRow < GameInstances.BOARD_ROW) && (innerColumn < GameInstances.BOARD_COLUMN)){
+				
+				//System.out.println("inner_Row: " + innerRow +" inner_column: "+innerColumn);
+				
+				if((this._gameBoard[innerRow][innerColumn]).equals(playerSymbol)){
+					if(startColumn < 0 ){
+						startRow = innerRow;
+						startColumn = innerColumn;
+					}
+					endRow = innerRow;
+					endColumn = innerColumn;
+				}
+				else{
+					startRow = -1;
+					startColumn= -1;
+					endRow = -1;
+					endColumn = -1;
+				}
+				//System.out.println("Star_Row: "+startRow +" Start_Column: "+ startColumn+" End_Row: "+endRow+" End_column: "+endColumn);
+				
+				int difference = endRow - startRow;
+				difference = (difference > 0) ? difference : -difference;
+				if(difference >= 3){
+					ConnectedBlock cb = new ConnectedBlock(startRow, startColumn, endRow, endColumn, GameInstances.CONNECT_TYPE[2]);
+					return cb;
+				}
+				
+				innerRow++;
+				innerColumn++;
+			}
+				
+			currentRow--;
+			
+			if( currentRow < 0){
+				currentRow = FINAL_CHECK_ROW;
+				currentColumn++;
+			}
+			
+			isContinue = !(currentColumn >= FINAL_CHECK_COLUMN );	
+		}
+			
+		return null;
+	}
+	
+	
+	public ConnectedBlock ConnectFourInLeftSlope(String playerSymbol){
+		final int INIT_CHECKING_ROW = 0;
+		final int INIT_CHECKING_COLUMN = 0;
+		final int FINAL_CHECK_ROW = GameInstances.BOARD_ROW-1;
+		final int FINAL_CHECK_COLUMN = GameInstances.BOARD_COLUMN-1;
+		
+		int currentRow = INIT_CHECKING_ROW;
+		int currentColumn = INIT_CHECKING_COLUMN;
+		boolean isContinue = true;  
+		
+		
+		while(isContinue){
+			
+			//System.out.println("");
+			//System.out.println("Outer_Row: "+currentRow +" Outer_Column: "+ currentColumn);
+
+			
+			int innerRow = currentRow;
+			int innerColumn = currentColumn;
+			int startRow = -1;
+			int startColumn = -1;
+			int endRow =1;
+			int endColumn = -1;
+			
+			while((innerRow >= 0) && (innerColumn < GameInstances.BOARD_COLUMN)){
+				
+				//System.out.println("inner_Row: " + innerRow +" inner_column: "+innerColumn);
+				
+				if((this._gameBoard[innerRow][innerColumn]).equals(playerSymbol)){
+					if(startColumn < 0 ){
+						startRow = innerRow;
+						startColumn = innerColumn;
+					}
+					endRow = innerRow;
+					endColumn = innerColumn;
+				}
+				else{
+					startRow = -1;
+					startColumn= -1;
+					endRow = -1;
+					endColumn = -1;
+				}
+				//System.out.println("Star_Row: "+startRow +" Start_Column: "+ startColumn+" End_Row: "+endRow+" End_column: "+endColumn);
+				
+				int difference = endRow - startRow;
+				difference = (difference > 0) ? difference : -difference;
+				if(difference >= 3){
+					ConnectedBlock cb = new ConnectedBlock(startRow, startColumn, endRow, endColumn, GameInstances.CONNECT_TYPE[3]);
+					return cb;
+				}
+				
+				innerRow--;
+				innerColumn++;
+			}
+				
+			currentRow++;
+			
+			if( currentRow > FINAL_CHECK_ROW){
+				currentRow = FINAL_CHECK_ROW;
+				currentColumn++;
+			}
+			
+			isContinue = !(currentColumn >= FINAL_CHECK_COLUMN );	
 		}
 			
 		return null;

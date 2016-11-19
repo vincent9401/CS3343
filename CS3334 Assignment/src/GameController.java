@@ -49,7 +49,7 @@ public class GameController {
 		
 		
 		
-		while(!this.isWin(gameBoard) && !gameBoard.isGameBoardFull()){
+		while(!this.isWin() && !gameBoard.isGameBoardFull()){
 			outputController.printGameBoard(gameBoard);
 		
 			if(playerRound){// playerRound = true -> means that there is the human player round
@@ -69,7 +69,33 @@ public class GameController {
 		
 	}
 	
-	public boolean isWin(GameBoard gameBoard){
-		return false;//TODO
+	public boolean isWin(){
+		boolean result = false;
+		String[] tokens = {GameInstances.PLAYER_ROUND, GameInstances.ROBOT_TOKEN};
+		ConnectedBlock cb;
+		for(int i = 0; i<tokens.length; i++){
+			cb =  this._gameBoard.ConnectFourInColumn(tokens[i]);
+			if(cb!= null){
+				return true;
+			}
+			
+			cb =  this._gameBoard.ConnectFourInRow(tokens[i]);
+			if(cb!= null){
+				return true;
+			}
+			
+			cb =  this._gameBoard.ConnectFourInRightSlope(tokens[i]);
+			if(cb!= null){
+				return true;
+			}
+			
+			cb =  this._gameBoard.ConnectFourInLeftSlope(tokens[i]);
+			if(cb!= null){
+				return true;
+			}
+			
+		}
+		
+		return false;
 	}
 }

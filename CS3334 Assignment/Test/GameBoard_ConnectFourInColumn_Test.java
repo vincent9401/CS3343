@@ -2,13 +2,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class ConnectInColumnTest {
+public class GameBoard_ConnectFourInColumn_Test {
 	
 	private GameBoard _gameBoard;
 	private GameScreenOutputController _outputController;
 	private AlphaGo _alphaGo;
 	
-	public ConnectInColumnTest(){
+	public GameBoard_ConnectFourInColumn_Test(){
 		this._gameBoard = new GameBoard();
 		this._outputController = new GameScreenOutputController();
 		this._alphaGo = new AlphaGo(this._gameBoard);
