@@ -13,6 +13,10 @@ public class GameController {
 		this._alphaGo = new AlphaGo(this._gameBoard);
 	}
 	
+	public void setGameBoard(GameBoard gameBoard){
+		this._gameBoard = gameBoard;
+	}
+	
 	public boolean isPlayerFirst(){
 		Random ran = new Random();
 		int tmp = ran.nextInt(100)+1;
@@ -71,26 +75,26 @@ public class GameController {
 	
 	public boolean isWin(){
 		boolean result = false;
-		String[] tokens = {GameInstances.PLAYER_ROUND, GameInstances.ROBOT_TOKEN};
+		String[] tokens = {GameInstances.PLAYER_TOKEN, GameInstances.ROBOT_TOKEN};
 		ConnectedBlock cb;
 		for(int i = 0; i<tokens.length; i++){
 			cb =  this._gameBoard.ConnectFourInColumn(tokens[i]);
-			if(cb!= null){
+			if(!(cb == null)){
 				return true;
 			}
 			
 			cb =  this._gameBoard.ConnectFourInRow(tokens[i]);
-			if(cb!= null){
+			if(!(cb == null)){
 				return true;
 			}
 			
 			cb =  this._gameBoard.ConnectFourInRightSlope(tokens[i]);
-			if(cb!= null){
+			if(!(cb == null)){
 				return true;
 			}
 			
 			cb =  this._gameBoard.ConnectFourInLeftSlope(tokens[i]);
-			if(cb!= null){
+			if(!(cb == null)){
 				return true;
 			}
 			
