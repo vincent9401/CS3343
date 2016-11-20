@@ -53,53 +53,59 @@ public class GameController {
 		
 		
 		
-		while(!this.isWin() && !gameBoard.isGameBoardFull()){
+		while((this.isWin() == 0) && !gameBoard.isGameBoardFull()){
 			outputController.printGameBoard(gameBoard);
-		
+			String input;
 			if(playerRound){// playerRound = true -> means that there is the human player round
 				outputController.printMessage(GameInstances.INPUT_OPTION_MENU);
-				String input = this.getColumnIndex();
+				input = this.getColumnIndex();
 				outputController.printMessage(GameInstances.SHOW_INPUTED_COLUMN_INDEX + input+"\n");
-				gameBoard.putTokenIntoGameBoard(input, playerRound);
-				outputController.printGameBoard(gameBoard);
-
-				
-				break;
+				gameBoard.putTokenIntoGameBoard(input, true);
+				playerRound = false;
 			}
-			else{// playerRound = flase -> means that there is the robot round
-				//TODO
+			else{// playerRound = false -> means that there is the robot round
+				input = this._alphaGo.decideNextAction();
+				gameBoard.putTokenIntoGameBoard(input, false);
+				playerRound = true;
 			}
 		}
 		
+		outputController.printGameBoard(gameBoard);
+		
 	}
 	
-	public boolean isWin(){
-		boolean result = false;
+	public int isWin(){
+		int result = 0;
 		String[] tokens = {GameInstances.PLAYER_TOKEN, GameInstances.ROBOT_TOKEN};
 		ConnectedBlock cb;
 		for(int i = 0; i<tokens.length; i++){
+			result = 0;
 			cb =  this._gameBoard.ConnectFourInColumn(tokens[i]);
 			if(!(cb == null)){
-				return true;
+				result++;
 			}
 			
 			cb =  this._gameBoard.ConnectFourInRow(tokens[i]);
 			if(!(cb == null)){
-				return true;
+				result++;
 			}
 			
 			cb =  this._gameBoard.ConnectFourInRightSlope(tokens[i]);
 			if(!(cb == null)){
-				return true;
+				result++;
 			}
 			
 			cb =  this._gameBoard.ConnectFourInLeftSlope(tokens[i]);
 			if(!(cb == null)){
-				return true;
+				result++;
+			}
+			
+			if(result>0){
+				return result;
 			}
 			
 		}
 		
-		return false;
+		return 0;
 	}
 }

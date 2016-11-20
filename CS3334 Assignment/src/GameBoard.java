@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class GameBoard {
+public class GameBoard implements Cloneable{
 	
 			
 		private String[][] _gameBoard;
@@ -21,10 +21,23 @@ public class GameBoard {
 		
 	}
 	
+	public boolean removeTokenOnGameBoard(String inputColumn){
+		
+		for(int i =  this._gameBoard.length -1; i >= 0; i--){
+			int column = GameInstances.COLUMN_MAP.get(inputColumn);
+			if(this._gameBoard[i][column].equals("*")) {
+				this._gameBoard[i+1][column] = "*";
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
 	
 	
 	// Put a token into the game board
-	public void putTokenIntoGameBoard(String inputColumn, boolean playerRound) {
+	public boolean putTokenIntoGameBoard(String inputColumn, boolean playerRound) {
 		// boolean playerRound 
 		// When player = true -> human player round
 		// When player = false -> robot round
@@ -34,9 +47,10 @@ public class GameBoard {
 			int column = GameInstances.COLUMN_MAP.get(inputColumn);
 			if(this._gameBoard[i][column].equals("*")) {
 				this._gameBoard[i][column] = playerToken;
-				break;
+				return true;
 			}
 		}
+		return false;
 			
 	}
 	
@@ -262,6 +276,14 @@ public class GameBoard {
 			
 		return null;
 	}
+
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+	
+	
 	
 	
 }

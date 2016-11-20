@@ -26,9 +26,9 @@ public class GameController_isWin_tese {
 		outputController.printGameBoard(gameBoard);
 		
 		this._controller.setGameBoard(gameBoard);
-		boolean actualResult = this._controller.isWin();
+		int actualResult = this._controller.isWin();
 		
-		assertEquals(false, actualResult);
+		assertEquals(0, actualResult);
 	}
 	
 	@Test
@@ -44,9 +44,9 @@ public class GameController_isWin_tese {
 		outputController.printGameBoard(gameBoard);
 		
 		this._controller.setGameBoard(gameBoard);
-		boolean actualResult = this._controller.isWin();
+		int actualResult = this._controller.isWin();
 		
-		assertEquals(true, actualResult);
+		assertEquals(1, actualResult);
 	}
 
 	@Test
@@ -72,9 +72,9 @@ public class GameController_isWin_tese {
 		outputController.printGameBoard(gameBoard);
 		
 		this._controller.setGameBoard(gameBoard);
-		boolean actualResult = this._controller.isWin();
+		int actualResult = this._controller.isWin();
 		
-		assertEquals(true, actualResult);
+		assertEquals(1, actualResult);
 	}
 	
 	@Test
@@ -99,9 +99,9 @@ public class GameController_isWin_tese {
 		outputController.printGameBoard(gameBoard);
 		
 		this._controller.setGameBoard(gameBoard);
-		boolean actualResult = this._controller.isWin();
-		
-		assertEquals(false, actualResult);
+		int actualResult = this._controller.isWin();
+
+		assertEquals(0, actualResult);
 	}
 	
 	@Test
@@ -129,9 +129,9 @@ public class GameController_isWin_tese {
 		outputController.printGameBoard(gameBoard);
 		
 		this._controller.setGameBoard(gameBoard);
-		boolean actualResult = this._controller.isWin();
+		int actualResult = this._controller.isWin();
 		
-		assertEquals(true, actualResult);
+		assertEquals(1, actualResult);
 	}
 	
 	@Test
@@ -159,9 +159,9 @@ public class GameController_isWin_tese {
 		outputController.printGameBoard(gameBoard);
 		
 		this._controller.setGameBoard(gameBoard);
-		boolean actualResult = this._controller.isWin();
+		int actualResult = this._controller.isWin();
 		
-		assertEquals(true, actualResult);
+		assertEquals(1, actualResult);
 	}
 	
 	@Test
@@ -190,9 +190,9 @@ public class GameController_isWin_tese {
 		outputController.printGameBoard(gameBoard);
 		
 		this._controller.setGameBoard(gameBoard);
-		boolean actualResult = this._controller.isWin();
+		int actualResult = this._controller.isWin();
 		
-		assertEquals(true, actualResult);
+		assertEquals(1, actualResult);
 	}
 
 }
