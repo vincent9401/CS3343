@@ -19,28 +19,47 @@ public class AlphaGo {
 		List<String> possibleActions;
 		Random rand = new Random();
 		
+		
+		System.out.println("Inner Code");
+		this._outputController.printGameBoard(this._gameboard);
+		
 		try {
 			
+			System.out.println("Robot WinByOneAction");
+			this._outputController.printGameBoard(this._gameboard);
 			
 			action = this.WinByOneAction();
 			if(!(action == null)){
 				return action;
 			}
 			
+			System.out.println("player WinByOneAction");
+			this._outputController.printGameBoard(this._gameboard);
+			
 			action = this.BlockPlayerWinByOneAction();
 			if(!(action == null)){
 				return action;
 			}
+			
+			
+			System.out.println("Robot MakeOneActionToHaveTwoDifferentWinningWays");
+			this._outputController.printGameBoard(this._gameboard);
 			
 			action = this.MakeOneActionToHaveTwoDifferentWinningWays();
 			if(!(action == null)){
 				return action;
 			}
 			
+			System.out.println("player MakeOneActionToHaveTwoDifferentWinningWays");
+			this._outputController.printGameBoard(this._gameboard);
+			
 			action = this.BlockPlayerMakeOneActionToHaveTwoDifferentWinningWays();
 			if(!(action == null)){
 				return action;
 			}
+			
+			System.out.println("Robot MakeOneActionToHaveOnetWinningWay");
+			this._outputController.printGameBoard(this._gameboard);
 			
 			possibleActions = this.MakeOneActionToHaveOnetWinningWay();
 			if(!(possibleActions.isEmpty())){
@@ -49,12 +68,18 @@ public class AlphaGo {
 				return possibleActions.get(n);
 			}
 			
+			System.out.println("Robot posibleSeconTokenInput");
+			this._outputController.printGameBoard(this._gameboard);
+			
 			possibleActions = this.posibleSeconTokenInput();
 			if(!(possibleActions.isEmpty())){
 				
 				int n = rand.nextInt(possibleActions.size());
 				return possibleActions.get(n);
 			}
+			
+			System.out.println("Before return from AlphaGo");
+			this._outputController.printGameBoard(this._gameboard);
 			
 			return checkingColumns[rand.nextInt(checkingColumns.length)];
 				

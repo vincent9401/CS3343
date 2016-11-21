@@ -67,6 +67,10 @@ public class GameController {
 				
 				input = this._alphaGo.decideNextAction();
 				System.out.println(input);
+				
+				System.out.println("before put token to board");
+				this._outputController.printGameBoard(gameBoard);
+				
 				gameBoard.putTokenIntoGameBoard(input, false);
 				playerRound = true;
 			}
