@@ -95,4 +95,34 @@ public class GameBoard_ConnectFourInColumn_Test {
 		assertEquals(GameInstances.CONNECT_TYPE[0], actualResult.getConnect_type());
 	}
 
+	@Test
+	public void testConnectedInColumn_5() {
+		GameBoard gameBoard = this._gameBoard;
+		GameScreenOutputController outputController = this._outputController;
+		gameBoard.initializeGameBoard();
+		
+		gameBoard.putTokenIntoGameBoard("C", true);
+		gameBoard.putTokenIntoGameBoard("C", false);
+		gameBoard.putTokenIntoGameBoard("C", false);
+		gameBoard.putTokenIntoGameBoard("D", false);
+		gameBoard.putTokenIntoGameBoard("D", false);
+		gameBoard.putTokenIntoGameBoard("D", false);
+		gameBoard.putTokenIntoGameBoard("D", false);
+		gameBoard.putTokenIntoGameBoard("E", true);
+		gameBoard.putTokenIntoGameBoard("E", true);
+		gameBoard.putTokenIntoGameBoard("E", false);
+		gameBoard.putTokenIntoGameBoard("F", false);
+		gameBoard.putTokenIntoGameBoard("F", true);
+		
+		outputController.printGameBoard(gameBoard);
+		
+		ConnectedBlock actualResult = gameBoard.ConnectFourInColumn(GameInstances.ROBOT_TOKEN);
+		System.out.println(actualResult.getConnect_type()+" / "+actualResult.getStartRow()+" / "+actualResult.getStartColumn()+" / "+actualResult.getEndRow()+" / "+actualResult.getEndColumn() );
+		assertEquals(5, actualResult.getStartRow());
+		assertEquals(3, actualResult.getStartColumn());
+		assertEquals(2, actualResult.getEndRow());
+		assertEquals(3, actualResult.getEndColumn());
+		assertEquals(GameInstances.CONNECT_TYPE[0], actualResult.getConnect_type());
+	}
+
 }

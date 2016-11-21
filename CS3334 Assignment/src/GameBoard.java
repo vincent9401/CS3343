@@ -81,7 +81,7 @@ public class GameBoard implements Cloneable{
 			startColumn = column;
 			for(int row = GameInstances.BOARD_ROW-1; row >= 0; row--){
 				
-				//System.out.println(" row : "+row+" column : "+column+" startRow : "+ startRow+" endRow : "+ endRow);
+				
 				
 				if((this._gameBoard[row][column]).equals("*")){
 					
@@ -98,11 +98,15 @@ public class GameBoard implements Cloneable{
 					endRow = -1;
 				}
 				
+				//System.out.println(" row : "+row+" column : "+column+" startRow : "+ startRow+" endRow : "+ endRow);
+				
 				if((startRow - endRow) >= 3){
 					ConnectedBlock cb = new ConnectedBlock(startRow, startColumn, endRow, startColumn, GameInstances.CONNECT_TYPE[0]);
 					return cb;
 				}
 			}
+			startRow = -1;
+			endRow = -1;
 		}
 		
 		return null;
