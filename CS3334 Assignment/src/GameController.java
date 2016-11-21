@@ -64,7 +64,9 @@ public class GameController {
 				playerRound = false;
 			}
 			else{// playerRound = false -> means that there is the robot round
+				
 				input = this._alphaGo.decideNextAction();
+				System.out.println(input);
 				gameBoard.putTokenIntoGameBoard(input, false);
 				playerRound = true;
 			}
