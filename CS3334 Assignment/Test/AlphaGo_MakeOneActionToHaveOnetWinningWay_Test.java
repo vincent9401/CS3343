@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -28,7 +27,7 @@ public class AlphaGo_MakeOneActionToHaveOnetWinningWay_Test {
 		gameBoard.putTokenIntoGameBoard("G", true);
 
 		this._outputController.printGameBoard(gameBoard);
-		List actualResult = this._alphaGo.MakeOneActionToHaveOnetWinningWay();
+		List<String> actualResult = this._alphaGo.MakeOneActionToHaveOneWinningWay();
 
 		assertEquals("A", actualResult.get(0));
 		assertEquals("C", actualResult.get(1));
@@ -43,10 +42,9 @@ public class AlphaGo_MakeOneActionToHaveOnetWinningWay_Test {
 		gameBoard.putTokenIntoGameBoard("E", true);
 		gameBoard.putTokenIntoGameBoard("D", false);
 		gameBoard.putTokenIntoGameBoard("B", false);
-	
 
 		this._outputController.printGameBoard(gameBoard);
-		List actualResult = this._alphaGo.MakeOneActionToHaveOnetWinningWay();
+		List<String> actualResult = this._alphaGo.MakeOneActionToHaveOneWinningWay();
 
 		assertEquals("A", actualResult.get(0));
 		assertEquals("C", actualResult.get(1));
@@ -62,7 +60,7 @@ public class AlphaGo_MakeOneActionToHaveOnetWinningWay_Test {
 	
 
 		this._outputController.printGameBoard(gameBoard);
-		List actualResult = this._alphaGo.MakeOneActionToHaveOnetWinningWay();
+		List<String> actualResult = this._alphaGo.MakeOneActionToHaveOneWinningWay();
 
 		assertEquals("D", actualResult.get(0));
 	}

@@ -35,7 +35,4 @@ public class ConnectedBlock {
 		return _connect_type;
 	}
 	
-	
-	
-	
 }

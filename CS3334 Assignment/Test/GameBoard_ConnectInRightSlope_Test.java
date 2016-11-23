@@ -5,15 +5,11 @@ import org.junit.Test;
 public class GameBoard_ConnectInRightSlope_Test {
 	private GameBoard _gameBoard;
 	private GameScreenOutputController _outputController;
-	private AlphaGo _alphaGo;
 	
 	public GameBoard_ConnectInRightSlope_Test(){
 		this._gameBoard = new GameBoard();
 		this._outputController = new GameScreenOutputController();
-		this._alphaGo = new AlphaGo(this._gameBoard);
 	}
-	
-	
 
 	@Test
 	public void testConnectedInRightSlope_1() {
@@ -82,7 +78,6 @@ public class GameBoard_ConnectInRightSlope_Test {
 		gameBoard.putTokenIntoGameBoard("B", false);
 		gameBoard.putTokenIntoGameBoard("C", false);
 		
-		
 		outputController.printGameBoard(gameBoard);
 		
 		ConnectedBlock actualResult = gameBoard.ConnectFourInRightSlope(GameInstances.ROBOT_TOKEN);
@@ -133,8 +128,6 @@ public class GameBoard_ConnectInRightSlope_Test {
 		gameBoard.putTokenIntoGameBoard("F", false);
 		gameBoard.putTokenIntoGameBoard("F", true);
 		gameBoard.putTokenIntoGameBoard("F", true);
-
-		
 		
 		outputController.printGameBoard(gameBoard);
 		
@@ -175,7 +168,6 @@ public class GameBoard_ConnectInRightSlope_Test {
 		gameBoard.putTokenIntoGameBoard("E", false);
 		gameBoard.putTokenIntoGameBoard("F", false);
 		
-		
 		outputController.printGameBoard(gameBoard);
 		
 		ConnectedBlock actualResult = gameBoard.ConnectFourInRightSlope(GameInstances.ROBOT_TOKEN);
@@ -187,5 +179,4 @@ public class GameBoard_ConnectInRightSlope_Test {
 		assertEquals(5, actualResult.getEndColumn());
 	}
 	
-
 }

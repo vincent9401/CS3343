@@ -17,9 +17,9 @@ public class GameController {
 		this._gameBoard = gameBoard;
 	}
 	
-	public boolean isPlayerFirst(){
+	public boolean isPlayerFirst(int randomRange){
 		Random ran = new Random();
-		int tmp = ran.nextInt(100)+1;
+		int tmp = ran.nextInt(randomRange)+1;
 		
 		if(tmp <= 50){
 			return true;
@@ -46,7 +46,7 @@ public class GameController {
 		GameScreenOutputController outputController = this._outputController;
 		gameBoard.initializeGameBoard();
 		
-		boolean playerRound = this.isPlayerFirst();
+		boolean playerRound = this.isPlayerFirst(100);
 		String message = playerRound ? GameInstances.PLAYER_FIRST : GameInstances.ROBOT_FIRST;
 		outputController.printMessage(message);
 		

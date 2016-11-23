@@ -5,12 +5,10 @@ import org.junit.Test;
 public class GameBoard_ConnectFourInRow_Test {
 	private GameBoard _gameBoard;
 	private GameScreenOutputController _outputController;
-	private AlphaGo _alphaGo;
 	
 	public GameBoard_ConnectFourInRow_Test(){
 		this._gameBoard = new GameBoard();
 		this._outputController = new GameScreenOutputController();
-		this._alphaGo = new AlphaGo(this._gameBoard);
 	}
 
 	@Test
@@ -105,7 +103,5 @@ public class GameBoard_ConnectFourInRow_Test {
 		assertEquals(4, actualResult.getEndRow());
 		assertEquals(5, actualResult.getEndColumn());
 	}
-
-
 
 }

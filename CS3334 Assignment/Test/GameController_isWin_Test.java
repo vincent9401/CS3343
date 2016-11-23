@@ -2,21 +2,19 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class GameController_isWin_tese {
+public class GameController_isWin_Test {
 	private GameBoard _gameBoard;
 	private GameScreenOutputController _outputController;
-	private AlphaGo _alphaGo;
 	private GameController _controller;
 	
-	public GameController_isWin_tese(){
+	public GameController_isWin_Test(){
 		this._gameBoard = new GameBoard();
 		this._outputController = new GameScreenOutputController();
-		this._alphaGo = new AlphaGo(this._gameBoard);
 		this._controller = new GameController();
 	}
 
 	@Test
-	public void test_1() {
+	public void testIsWinV1() {
 		GameBoard gameBoard = this._gameBoard;
 		GameScreenOutputController outputController = this._outputController;
 		gameBoard.initializeGameBoard();
@@ -32,7 +30,7 @@ public class GameController_isWin_tese {
 	}
 	
 	@Test
-	public void test_2() {
+	public void testIsWinV2() {
 		GameBoard gameBoard = this._gameBoard;
 		GameScreenOutputController outputController = this._outputController;
 		gameBoard.initializeGameBoard();
@@ -50,7 +48,7 @@ public class GameController_isWin_tese {
 	}
 
 	@Test
-	public void test_3() {
+	public void testIsWinV3() {
 		GameBoard gameBoard = this._gameBoard;
 		GameScreenOutputController outputController = this._outputController;
 		gameBoard.initializeGameBoard();
@@ -78,7 +76,7 @@ public class GameController_isWin_tese {
 	}
 	
 	@Test
-	public void test_4() {
+	public void testIsWinV4() {
 		GameBoard gameBoard = this._gameBoard;
 		GameScreenOutputController outputController = this._outputController;
 		gameBoard.initializeGameBoard();
@@ -105,7 +103,7 @@ public class GameController_isWin_tese {
 	}
 	
 	@Test
-	public void test_5() {
+	public void testIsWinV5() {
 		GameBoard gameBoard = this._gameBoard;
 		GameScreenOutputController outputController = this._outputController;
 		gameBoard.initializeGameBoard();
@@ -135,7 +133,7 @@ public class GameController_isWin_tese {
 	}
 	
 	@Test
-	public void test_6() {
+	public void testIsWinV6() {
 		GameBoard gameBoard = this._gameBoard;
 		GameScreenOutputController outputController = this._outputController;
 		gameBoard.initializeGameBoard();
@@ -165,7 +163,7 @@ public class GameController_isWin_tese {
 	}
 	
 	@Test
-	public void test_7() {
+	public void testIsWinV7() {
 		GameBoard gameBoard = this._gameBoard;
 		GameScreenOutputController outputController = this._outputController;
 		gameBoard.initializeGameBoard();

@@ -56,7 +56,7 @@ public class AlphaGo {
 			System.out.println("Robot MakeOneActionToHaveOnetWinningWay");
 			this._outputController.printGameBoard(this._gameboard);
 			
-			possibleActions = this.MakeOneActionToHaveOnetWinningWay();
+			possibleActions = this.MakeOneActionToHaveOneWinningWay();
 			if(!(possibleActions.isEmpty())){
 				int n = rand.nextInt(possibleActions.size());
 				return possibleActions.get(n);
@@ -65,7 +65,7 @@ public class AlphaGo {
 			System.out.println("Robot posibleSeconTokenInput");
 			this._outputController.printGameBoard(this._gameboard);
 			
-			possibleActions = this.posibleSeconTokenInput();
+			possibleActions = this.possibleSeconTokenInput();
 			if(!(possibleActions.isEmpty())){
 				int n = rand.nextInt(possibleActions.size());
 				return possibleActions.get(n);
@@ -207,11 +207,11 @@ public class AlphaGo {
 		return this.MakeOneActionToHaveTwoDifferentWinningWays(this._gameboard);
 	}
 	
-	public List<String> posibleSeconTokenInput() throws CloneNotSupportedException{
-		return this.posibleSeconTokenInput(this._gameboard);
+	public List<String> possibleSeconTokenInput() throws CloneNotSupportedException{
+		return this.possibleSeconTokenInput(this._gameboard);
 	}
 	
-	public List<String> posibleSeconTokenInput(GameBoard gb) throws CloneNotSupportedException{
+	public List<String> possibleSeconTokenInput(GameBoard gb) throws CloneNotSupportedException{
 		String[] checkingColumns = { "A", "B", "C", "D", "E", "F", "G" };
 		List<String> bestActions = new ArrayList<String>();
 		List<String> normalActions = new ArrayList<String>();
@@ -227,7 +227,7 @@ public class AlphaGo {
 				if(!(bestResult == null)){
 					bestActions.add(checkingColumns[i]);
 				} else {
-					List<String> normalResult = this.MakeOneActionToHaveOnetWinningWay(gameBoard);
+					List<String> normalResult = this.MakeOneActionToHaveOneWinningWay(gameBoard);
 					if(!normalResult.isEmpty()){
 						normalActions.add(checkingColumns[i]);
 					}
@@ -261,7 +261,7 @@ public class AlphaGo {
 	}
 	
 	
-	public List<String> MakeOneActionToHaveOnetWinningWay(GameBoard gb) throws CloneNotSupportedException{
+	public List<String> MakeOneActionToHaveOneWinningWay(GameBoard gb) throws CloneNotSupportedException{
 		String[] checkingColumns = { "A", "B", "C", "D", "E", "F", "G" };
 		List<String> possibleActions = new ArrayList<String>();
 		GameBoard gameBoard = (GameBoard) gb.clone();
@@ -296,11 +296,11 @@ public class AlphaGo {
 		return possibleActions;
 	}
 	
-	public List<String> MakeOneActionToHaveOnetWinningWay() throws CloneNotSupportedException{
-		return this.MakeOneActionToHaveOnetWinningWay(this._gameboard);
+	public List<String> MakeOneActionToHaveOneWinningWay() throws CloneNotSupportedException{
+		return this.MakeOneActionToHaveOneWinningWay(this._gameboard);
 	}
 	
-	public String WinByTweActions() throws CloneNotSupportedException{
+	public String WinByTwoActions() throws CloneNotSupportedException{
 		return null;
 	}
 }

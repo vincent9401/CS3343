@@ -6,12 +6,10 @@ public class GameBoard_ConnectFourInColumn_Test {
 	
 	private GameBoard _gameBoard;
 	private GameScreenOutputController _outputController;
-	private AlphaGo _alphaGo;
 	
 	public GameBoard_ConnectFourInColumn_Test(){
 		this._gameBoard = new GameBoard();
 		this._outputController = new GameScreenOutputController();
-		this._alphaGo = new AlphaGo(this._gameBoard);
 	}
 
 	@Test
@@ -39,7 +37,6 @@ public class GameBoard_ConnectFourInColumn_Test {
 		gameBoard.putTokenIntoGameBoard("B", true);
 		outputController.printGameBoard(gameBoard);
 		
-		ConnectedBlock expectedResult = new ConnectedBlock(5, 1, 2, 1, GameInstances.CONNECT_TYPE[0]);
 		ConnectedBlock actualResult = gameBoard.ConnectFourInColumn(GameInstances.PLAYER_TOKEN);
 		//System.out.println(actualResult.getConnect_type()+" / "+actualResult.getStartRow()+" / "+actualResult.getStartColumn()+" / "+actualResult.getEndRow()+" / "+actualResult.getEndColumn() );
 		assertEquals(5, actualResult.getStartRow());
@@ -65,7 +62,6 @@ public class GameBoard_ConnectFourInColumn_Test {
 		gameBoard.putTokenIntoGameBoard("D", false);
 		outputController.printGameBoard(gameBoard);
 		
-		
 		assertEquals(null, gameBoard.ConnectFourInColumn(GameInstances.PLAYER_TOKEN));
 	}
 	
@@ -84,8 +80,7 @@ public class GameBoard_ConnectFourInColumn_Test {
 		gameBoard.putTokenIntoGameBoard("B", false);
 		gameBoard.putTokenIntoGameBoard("D", false);
 		outputController.printGameBoard(gameBoard);
-		
-		ConnectedBlock expectedResult = new ConnectedBlock(4, 6, 1, 6, GameInstances.CONNECT_TYPE[0]);
+
 		ConnectedBlock actualResult = gameBoard.ConnectFourInColumn(GameInstances.PLAYER_TOKEN);
 		//System.out.println(actualResult.getConnect_type()+" / "+actualResult.getStartRow()+" / "+actualResult.getStartColumn()+" / "+actualResult.getEndRow()+" / "+actualResult.getEndColumn() );
 		assertEquals(4, actualResult.getStartRow());

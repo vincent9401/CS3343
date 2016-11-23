@@ -5,12 +5,10 @@ import org.junit.Test;
 public class GameBoard_ConnectFourInLeftSlope_Test {
 	private GameBoard _gameBoard;
 	private GameScreenOutputController _outputController;
-	private AlphaGo _alphaGo;
 	
 	public GameBoard_ConnectFourInLeftSlope_Test(){
 		this._gameBoard = new GameBoard();
 		this._outputController = new GameScreenOutputController();
-		this._alphaGo = new AlphaGo(this._gameBoard);
 	}
 	
 	
@@ -67,7 +65,6 @@ public class GameBoard_ConnectFourInLeftSlope_Test {
 		//System.out.println(actualResult.getConnect_type()+" / "+actualResult.getStartRow()+" / "+actualResult.getStartColumn()+" / "+actualResult.getEndRow()+" / "+actualResult.getEndColumn() );
 		
 		assertEquals(null, actualResult);
-		
 	}
 	
 	@Test
@@ -157,7 +154,6 @@ public class GameBoard_ConnectFourInLeftSlope_Test {
 		assertEquals(0, actualResult.getEndRow());
 		assertEquals(4, actualResult.getEndColumn());
 		assertEquals("left_slope_connect", actualResult.getConnect_type());
-		
 	}
 
 }
