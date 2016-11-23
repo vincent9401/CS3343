@@ -7,7 +7,7 @@ public class ConnectFour {
 	public static void main(String args[]) {
 
 		
-		GameController gameController = new GameController();
+		GameController gameController = GameController.getInstance();
 		gameController.playGame();
 
 	}

@@ -23,7 +23,7 @@ public class GameBoard_ConnectFourInRow_Test {
 		gameBoard.putTokenIntoGameBoard("B", true);
 		outputController.printGameBoard(gameBoard);
 		
-		assertEquals(null, gameBoard.ConnectFourInColumn(GameInstances.PLAYER_TOKEN));
+		assertEquals(null, gameBoard.connectFourInColumn(GameInstances.PLAYER_TOKEN));
 	}
 	
 	@Test

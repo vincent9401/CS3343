@@ -28,7 +28,7 @@ public class AlphaGo_MakeOneActionToHaveTwoDifferentWinningWays_Test {
 		gameBoard.putTokenIntoGameBoard("D", true);
 		gameBoard.putTokenIntoGameBoard("D", true);
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.MakeOneActionToHaveTwoDifferentWinningWays();
+		String nextAction = this._alphaGo.makeOneActionToHaveTwoDifferentWinningWays();
 		System.out.println(nextAction);
 		assertEquals("C", nextAction);
 	}
@@ -48,7 +48,7 @@ public class AlphaGo_MakeOneActionToHaveTwoDifferentWinningWays_Test {
 		gameBoard.putTokenIntoGameBoard("F",false );
 		gameBoard.putTokenIntoGameBoard("F",true );
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.MakeOneActionToHaveTwoDifferentWinningWays();
+		String nextAction = this._alphaGo.makeOneActionToHaveTwoDifferentWinningWays();
 		System.out.println(nextAction);
 		assertEquals("D", nextAction);
 	}
@@ -68,7 +68,7 @@ public class AlphaGo_MakeOneActionToHaveTwoDifferentWinningWays_Test {
 		gameBoard.putTokenIntoGameBoard("F",false );
 		gameBoard.putTokenIntoGameBoard("F",true );
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.MakeOneActionToHaveTwoDifferentWinningWays();
+		String nextAction = this._alphaGo.makeOneActionToHaveTwoDifferentWinningWays();
 		System.out.println(nextAction);
 		assertEquals("B", nextAction);
 	}
@@ -88,7 +88,7 @@ public class AlphaGo_MakeOneActionToHaveTwoDifferentWinningWays_Test {
 		gameBoard.putTokenIntoGameBoard("B",false );
 		
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.MakeOneActionToHaveTwoDifferentWinningWays();
+		String nextAction = this._alphaGo.makeOneActionToHaveTwoDifferentWinningWays();
 		System.out.println(nextAction);
 		assertEquals("C", nextAction);
 	}
@@ -101,7 +101,7 @@ public class AlphaGo_MakeOneActionToHaveTwoDifferentWinningWays_Test {
 		gameBoard.putTokenIntoGameBoard("C",false );
 		
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.MakeOneActionToHaveTwoDifferentWinningWays();
+		String nextAction = this._alphaGo.makeOneActionToHaveTwoDifferentWinningWays();
 		System.out.println(nextAction);
 		assertEquals(null, nextAction);
 	}
@@ -121,7 +121,7 @@ public class AlphaGo_MakeOneActionToHaveTwoDifferentWinningWays_Test {
 		gameBoard.putTokenIntoGameBoard("B",false );
 		
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.MakeOneActionToHaveTwoDifferentWinningWays();
+		String nextAction = this._alphaGo.makeOneActionToHaveTwoDifferentWinningWays();
 		System.out.println(nextAction);
 		
 		assertEquals(null, nextAction);
@@ -144,7 +144,7 @@ public class AlphaGo_MakeOneActionToHaveTwoDifferentWinningWays_Test {
 		gameBoard.putTokenIntoGameBoard("E",false );
 		
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.MakeOneActionToHaveTwoDifferentWinningWays();
+		String nextAction = this._alphaGo.makeOneActionToHaveTwoDifferentWinningWays();
 		System.out.println(nextAction);
 		assertEquals("C", nextAction);
 	}
@@ -167,7 +167,7 @@ public class AlphaGo_MakeOneActionToHaveTwoDifferentWinningWays_Test {
 		gameBoard.putTokenIntoGameBoard("C",true );
 		
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.MakeOneActionToHaveTwoDifferentWinningWays();
+		String nextAction = this._alphaGo.makeOneActionToHaveTwoDifferentWinningWays();
 		System.out.println(nextAction);
 		assertEquals("D", nextAction);
 	}

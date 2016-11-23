@@ -24,7 +24,7 @@ public class GameBoard_ConnectFourInColumn_Test {
 		gameBoard.putTokenIntoGameBoard("A", true);
 		outputController.printGameBoard(gameBoard);
 		
-		assertEquals(null, gameBoard.ConnectFourInColumn(GameInstances.PLAYER_TOKEN));
+		assertEquals(null, gameBoard.connectFourInColumn(GameInstances.PLAYER_TOKEN));
 	}
 	
 	@Test
@@ -40,7 +40,7 @@ public class GameBoard_ConnectFourInColumn_Test {
 		outputController.printGameBoard(gameBoard);
 		
 		ConnectedBlock expectedResult = new ConnectedBlock(5, 1, 2, 1, GameInstances.CONNECT_TYPE[0]);
-		ConnectedBlock actualResult = gameBoard.ConnectFourInColumn(GameInstances.PLAYER_TOKEN);
+		ConnectedBlock actualResult = gameBoard.connectFourInColumn(GameInstances.PLAYER_TOKEN);
 		//System.out.println(actualResult.getConnect_type()+" / "+actualResult.getStartRow()+" / "+actualResult.getStartColumn()+" / "+actualResult.getEndRow()+" / "+actualResult.getEndColumn() );
 		assertEquals(5, actualResult.getStartRow());
 		assertEquals(1, actualResult.getStartColumn());
@@ -66,7 +66,7 @@ public class GameBoard_ConnectFourInColumn_Test {
 		outputController.printGameBoard(gameBoard);
 		
 		
-		assertEquals(null, gameBoard.ConnectFourInColumn(GameInstances.PLAYER_TOKEN));
+		assertEquals(null, gameBoard.connectFourInColumn(GameInstances.PLAYER_TOKEN));
 	}
 	
 	@Test
@@ -86,7 +86,7 @@ public class GameBoard_ConnectFourInColumn_Test {
 		outputController.printGameBoard(gameBoard);
 		
 		ConnectedBlock expectedResult = new ConnectedBlock(4, 6, 1, 6, GameInstances.CONNECT_TYPE[0]);
-		ConnectedBlock actualResult = gameBoard.ConnectFourInColumn(GameInstances.PLAYER_TOKEN);
+		ConnectedBlock actualResult = gameBoard.connectFourInColumn(GameInstances.PLAYER_TOKEN);
 		//System.out.println(actualResult.getConnect_type()+" / "+actualResult.getStartRow()+" / "+actualResult.getStartColumn()+" / "+actualResult.getEndRow()+" / "+actualResult.getEndColumn() );
 		assertEquals(4, actualResult.getStartRow());
 		assertEquals(6, actualResult.getStartColumn());
@@ -116,7 +116,7 @@ public class GameBoard_ConnectFourInColumn_Test {
 		
 		outputController.printGameBoard(gameBoard);
 		
-		ConnectedBlock actualResult = gameBoard.ConnectFourInColumn(GameInstances.ROBOT_TOKEN);
+		ConnectedBlock actualResult = gameBoard.connectFourInColumn(GameInstances.ROBOT_TOKEN);
 		System.out.println(actualResult.getConnect_type()+" / "+actualResult.getStartRow()+" / "+actualResult.getStartColumn()+" / "+actualResult.getEndRow()+" / "+actualResult.getEndColumn() );
 		assertEquals(5, actualResult.getStartRow());
 		assertEquals(3, actualResult.getStartColumn());

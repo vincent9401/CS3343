@@ -12,7 +12,7 @@ public class GameController_isWin_tese {
 		this._gameBoard = new GameBoard();
 		this._outputController = new GameScreenOutputController();
 		this._alphaGo = new AlphaGo(this._gameBoard);
-		this._controller = new GameController();
+		this._controller = GameController.getInstance();
 	}
 
 	@Test

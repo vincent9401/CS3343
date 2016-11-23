@@ -4,7 +4,7 @@ import java.util.Map;
 public class GameBoard implements Cloneable{
 	
 			
-		private String[][] _gameBoard;
+	private String[][] _gameBoard;
 			
 	public GameBoard(){
 		String[][] gameBoard = new String[GameInstances.BOARD_ROW][GameInstances.BOARD_COLUMN];
@@ -23,7 +23,7 @@ public class GameBoard implements Cloneable{
 	
 	public boolean removeTokenOnGameBoard(String inputColumn){
 		
-		for(int i =  this._gameBoard.length -1; i >= 0; i--){
+		for(int i = (this._gameBoard.length -1); i >= 0; i--){
 			int column = GameInstances.COLUMN_MAP.get(inputColumn);
 			if(this._gameBoard[i][column].equals("*")) {
 				this._gameBoard[i+1][column] = "*";
@@ -43,7 +43,7 @@ public class GameBoard implements Cloneable{
 		// When player = false -> robot round
 		String playerToken = playerRound ? GameInstances.PLAYER_TOKEN : GameInstances.ROBOT_TOKEN;
 			
-		for(int i =  this._gameBoard.length -1; i >= 0; i--){
+		for(int i = (this._gameBoard.length -1); i >= 0; i--){
 			int column = GameInstances.COLUMN_MAP.get(inputColumn);
 			if(this._gameBoard[i][column].equals("*")) {
 				this._gameBoard[i][column] = playerToken;
@@ -59,11 +59,11 @@ public class GameBoard implements Cloneable{
 	}
 	
 	// Check whether the game board is full of tokens
-	public boolean isGameBoardFull() {
+	public boolean isFull() {
 		String[][] gameBoardInstance =  this._gameBoard;
 		for (String[] row : gameBoardInstance) {
-			for (String field : row) {
-				if (field.equals("*")) {
+			for (String eachField : row) {
+				if (eachField.equals("*")) {
 					return false;
 				}
 			}
@@ -71,7 +71,7 @@ public class GameBoard implements Cloneable{
 		return true;
 	}
 	
-	public ConnectedBlock ConnectFourInColumn(String playerSymbol){
+	public ConnectedBlock connectFourInColumn(String playerSymbol){
 		int startColumn = -1;
 		int startRow = -1;
 		int endRow = -1;

@@ -36,7 +36,7 @@ public class AlphaGo {
 			System.out.println("player WinByOneAction");
 			this._outputController.printGameBoard(this._gameboard);
 			
-			action = this.BlockPlayerWinByOneAction();
+			action = this.blockPlayerWinByOneAction();
 			if(!(action == null)){
 				return action;
 			}
@@ -45,7 +45,7 @@ public class AlphaGo {
 			System.out.println("Robot MakeOneActionToHaveTwoDifferentWinningWays");
 			this._outputController.printGameBoard(this._gameboard);
 			
-			action = this.MakeOneActionToHaveTwoDifferentWinningWays();
+			action = this.makeOneActionToHaveTwoDifferentWinningWays();
 			if(!(action == null)){
 				return action;
 			}
@@ -53,15 +53,15 @@ public class AlphaGo {
 			System.out.println("player MakeOneActionToHaveTwoDifferentWinningWays");
 			this._outputController.printGameBoard(this._gameboard);
 			
-			action = this.BlockPlayerMakeOneActionToHaveTwoDifferentWinningWays();
+			action = this.blockPlayerMakeOneActionToHaveTwoDifferentWinningWays();
 			if(!(action == null)){
 				return action;
 			}
 			
-			System.out.println("Robot MakeOneActionToHaveOnetWinningWay");
+			System.out.println("Robot MakeOneActionToHaveOneWinningWay");
 			this._outputController.printGameBoard(this._gameboard);
 			
-			possibleActions = this.MakeOneActionToHaveOnetWinningWay();
+			possibleActions = this.makeOneActionToHaveOnetWinningWay();
 			if(!(possibleActions.isEmpty())){
 				
 				int n = rand.nextInt(possibleActions.size());
@@ -71,7 +71,7 @@ public class AlphaGo {
 			System.out.println("Robot posibleSeconTokenInput");
 			this._outputController.printGameBoard(this._gameboard);
 			
-			possibleActions = this.posibleSeconTokenInput();
+			possibleActions = this.posibleSecondTokenInput();
 			if(!(possibleActions.isEmpty())){
 				
 				int n = rand.nextInt(possibleActions.size());
@@ -90,11 +90,11 @@ public class AlphaGo {
 		return null;
 	}
 	
-	public String BlockPlayerWinByOneAction() throws CloneNotSupportedException{
+	public String blockPlayerWinByOneAction() throws CloneNotSupportedException{
 		
 		String[] checkingColumns = { "A", "B", "C", "D", "E", "F", "G" };
 		GameBoard gameBoard = (GameBoard) this._gameboard.clone();
-		GameController controller = new GameController();
+		GameController controller = GameController.getInstance();
 		controller.setGameBoard(gameBoard);
 		
 		for(int i=0; i<checkingColumns.length; i++){
@@ -119,10 +119,10 @@ public class AlphaGo {
 	}
 	
 	
-	public String WinByOneAction(GameBoard gb) throws CloneNotSupportedException{
+	public String winByOneAction(GameBoard gb) throws CloneNotSupportedException{
 		String[] checkingColumns = { "A", "B", "C", "D", "E", "F", "G" };
 		GameBoard gameBoard = (GameBoard) gb.clone();
-		GameController controller = new GameController();
+		GameController controller = GameController.getInstance();
 		controller.setGameBoard(gameBoard);
 		
 		for(int i=0; i<checkingColumns.length; i++){
@@ -146,13 +146,13 @@ public class AlphaGo {
 	}
 	
 	public String WinByOneAction() throws CloneNotSupportedException{
-		return WinByOneAction(this._gameboard);
+		return winByOneAction(this._gameboard);
 	}
 	
-	public String BlockPlayerMakeOneActionToHaveTwoDifferentWinningWays() throws CloneNotSupportedException{
+	public String blockPlayerMakeOneActionToHaveTwoDifferentWinningWays() throws CloneNotSupportedException{
 		String[] checkingColumns = { "A", "B", "C", "D", "E", "F", "G" };
 		GameBoard gameBoard = (GameBoard) this._gameboard.clone();
-		GameController controller = new GameController();
+		GameController controller = GameController.getInstance();
 		controller.setGameBoard(gameBoard);
 		
 		for(int i=0; i<checkingColumns.length; i++){
@@ -190,10 +190,10 @@ public class AlphaGo {
 		return null;
 	}
 	
-	public String MakeOneActionToHaveTwoDifferentWinningWays(GameBoard gb) throws CloneNotSupportedException{
+	public String makeTwoWinWays(GameBoard gb) throws CloneNotSupportedException{
 		String[] checkingColumns = { "A", "B", "C", "D", "E", "F", "G" };
 		GameBoard gameBoard = (GameBoard) gb.clone();
-		GameController controller = new GameController();
+		GameController controller = GameController.getInstance();
 		controller.setGameBoard(gameBoard);
 		
 		for(int i=0; i<checkingColumns.length; i++){
@@ -233,32 +233,32 @@ public class AlphaGo {
 	
 	
 	
-	public String MakeOneActionToHaveTwoDifferentWinningWays() throws CloneNotSupportedException{
-		return this.MakeOneActionToHaveTwoDifferentWinningWays(this._gameboard);
+	public String makeOneActionToHaveTwoDifferentWinningWays() throws CloneNotSupportedException{
+		return this.makeTwoWinWays(this._gameboard);
 	}
 	
-	public List posibleSeconTokenInput() throws CloneNotSupportedException{
-		return this.posibleSeconTokenInput(this._gameboard);
+	public List<String> posibleSecondTokenInput() throws CloneNotSupportedException{
+		return this.posibleSecondTokenInput(this._gameboard);
 	}
 	
-	public List posibleSeconTokenInput(GameBoard gb) throws CloneNotSupportedException{
+	public List<String> posibleSecondTokenInput(GameBoard gb) throws CloneNotSupportedException{
 		String[] checkingColumns = { "A", "B", "C", "D", "E", "F", "G" };
-		List bestActions = new ArrayList();
-		List normalActions = new ArrayList();
-		List suggestedActions = new ArrayList();
+		List<String> bestActions = new ArrayList<String>();
+		List<String> normalActions = new ArrayList<String>();
+		List<String> suggestedActions = new ArrayList<String>();
 		GameBoard gameBoard = (GameBoard) gb.clone();
-		GameController controller = new GameController();
+		GameController controller = GameController.getInstance();
 		controller.setGameBoard(gameBoard);
 		
 		for(int i=0; i<checkingColumns.length; i++){
 			boolean inputResult = gameBoard.putTokenIntoGameBoard(checkingColumns[i], false);
 			if(inputResult){
-				String bestResult =this.MakeOneActionToHaveTwoDifferentWinningWays(gameBoard);
-				if(!(bestResult == null)){
+				String bestResult =this.makeTwoWinWays(gameBoard);
+				if( bestResult != null ){
 					bestActions.add(checkingColumns[i]);
 				}
 				else{
-					List normalResult = this.MakeOneActionToHaveOnetWinningWay(gameBoard);
+					List<String> normalResult = this.makeOneActionToHaveOnetWinningWay(gameBoard);
 					if(!normalResult.isEmpty()){
 						normalActions.add(checkingColumns[i]);
 					}
@@ -294,11 +294,11 @@ public class AlphaGo {
 	}
 	
 	
-	public List MakeOneActionToHaveOnetWinningWay(GameBoard gb) throws CloneNotSupportedException{
+	public List<String> makeOneActionToHaveOnetWinningWay(GameBoard gb) throws CloneNotSupportedException{
 		String[] checkingColumns = { "A", "B", "C", "D", "E", "F", "G" };
-		List possibleActions = new ArrayList();
+		List<String> possibleActions = new ArrayList<String>();
 		GameBoard gameBoard = (GameBoard) gb.clone();
-		GameController controller = new GameController();
+		GameController controller = GameController.getInstance();
 		controller.setGameBoard(gameBoard);
 		
 		for(int i=0; i<checkingColumns.length; i++){
@@ -337,8 +337,8 @@ public class AlphaGo {
 		
 	}
 	
-	public List MakeOneActionToHaveOnetWinningWay() throws CloneNotSupportedException{
-		return this.MakeOneActionToHaveOnetWinningWay(this._gameboard);
+	public List<String> makeOneActionToHaveOnetWinningWay() throws CloneNotSupportedException{
+		return this.makeOneActionToHaveOnetWinningWay(this._gameboard);
 		
 	}
 	

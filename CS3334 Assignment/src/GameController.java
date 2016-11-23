@@ -3,11 +3,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GameController {
+	
 	private GameBoard _gameBoard;
 	private GameScreenOutputController _outputController;
 	private AlphaGo _alphaGo;
+	private static GameController instance = new GameController();
 	
-	public GameController(){
+	public static GameController getInstance(){
+		return instance;
+	}
+	
+	private GameController(){
 		this._gameBoard = new GameBoard();
 		this._outputController = new GameScreenOutputController();
 		this._alphaGo = new AlphaGo(this._gameBoard);
@@ -53,7 +59,7 @@ public class GameController {
 		
 		
 		
-		while((this.isWin() == 0) && !gameBoard.isGameBoardFull()){
+		while((this.isWin() == 0) && !gameBoard.isFull()){
 			outputController.printGameBoard(gameBoard);
 			String input;
 			if(playerRound){// playerRound = true -> means that there is the human player round
@@ -86,7 +92,7 @@ public class GameController {
 		ConnectedBlock cb;
 		for(int i = 0; i<tokens.length; i++){
 			result = 0;
-			cb =  this._gameBoard.ConnectFourInColumn(tokens[i]);
+			cb =  this._gameBoard.connectFourInColumn(tokens[i]);
 			if(!(cb == null)){
 				result++;
 			}

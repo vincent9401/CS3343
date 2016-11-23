@@ -22,7 +22,7 @@ public class AlphaGo_PosibleSeconTokenInput_test {
 		gameBoard.putTokenIntoGameBoard("B", false);
 		gameBoard.putTokenIntoGameBoard("E", true);
 		this._outputController.printGameBoard(gameBoard);
-		List result = this._alphaGo.posibleSeconTokenInput();
+		List result = this._alphaGo.posibleSecondTokenInput();
 	
 		assertEquals("A", result.get(0));
 		assertEquals("B", result.get(1));
@@ -37,7 +37,7 @@ public class AlphaGo_PosibleSeconTokenInput_test {
 		gameBoard.putTokenIntoGameBoard("B", false);
 		gameBoard.putTokenIntoGameBoard("F", true);
 		this._outputController.printGameBoard(gameBoard);
-		List result = this._alphaGo.posibleSeconTokenInput();
+		List result = this._alphaGo.posibleSecondTokenInput();
 	
 		assertEquals("C", result.get(0));
 		assertEquals("D", result.get(1));
