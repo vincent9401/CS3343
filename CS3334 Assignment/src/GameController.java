@@ -32,7 +32,6 @@ public class GameController {
 		while(true){
 			Scanner sc = new Scanner(System.in);
 			String input = sc.next();
-			sc.close();
 			if(!Arrays.asList(GameInstances.COLUMN_NAME).contains(input)){
 				this._outputController.printMessage(GameInstances.INCORRECT_COLUMN_INDEX);
 			} else {
