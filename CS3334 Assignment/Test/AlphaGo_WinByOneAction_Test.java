@@ -54,7 +54,7 @@ public class AlphaGo_WinByOneAction_Test {
 		gameBoard.putTokenIntoGameBoard("B", false);
 		gameBoard.putTokenIntoGameBoard("B", false);
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.WinByOneAction();
+		String nextAction = this._alphaGo.winByOneAction();
 		System.out.println(nextAction);
 		assertEquals("B", nextAction);
 	}
@@ -71,7 +71,7 @@ public class AlphaGo_WinByOneAction_Test {
 		gameBoard.putTokenIntoGameBoard("E", false);
 		gameBoard.putTokenIntoGameBoard("F", false);
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.WinByOneAction();
+		String nextAction = this._alphaGo.winByOneAction();
 		System.out.println(nextAction);
 		assertEquals("G", nextAction);
 	}
@@ -91,7 +91,7 @@ public class AlphaGo_WinByOneAction_Test {
 		gameBoard.putTokenIntoGameBoard("D", true);
 		gameBoard.putTokenIntoGameBoard("C", false);
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.WinByOneAction();
+		String nextAction = this._alphaGo.winByOneAction();
 		System.out.println(nextAction);
 		assertEquals(null, nextAction);
 	}
@@ -115,7 +115,7 @@ public class AlphaGo_WinByOneAction_Test {
 		gameBoard.putTokenIntoGameBoard("C", true);
 		
 		this._outputController.printGameBoard(gameBoard);
-		String nextAction = this._alphaGo.WinByOneAction();
+		String nextAction = this._alphaGo.winByOneAction();
 		System.out.println(nextAction);
 		assertEquals("C", nextAction);
 	}

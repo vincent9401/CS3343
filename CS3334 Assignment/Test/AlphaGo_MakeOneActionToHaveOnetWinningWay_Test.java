@@ -28,7 +28,7 @@ public class AlphaGo_MakeOneActionToHaveOnetWinningWay_Test {
 		gameBoard.putTokenIntoGameBoard("G", true);
 
 		this._outputController.printGameBoard(gameBoard);
-		List actualResult = this._alphaGo.makeOneActionToHaveOnetWinningWay();
+		List actualResult = this._alphaGo.makeOneWinWay();
 
 		assertEquals("A", actualResult.get(0));
 		assertEquals("C", actualResult.get(1));
@@ -46,7 +46,7 @@ public class AlphaGo_MakeOneActionToHaveOnetWinningWay_Test {
 	
 
 		this._outputController.printGameBoard(gameBoard);
-		List actualResult = this._alphaGo.makeOneActionToHaveOnetWinningWay();
+		List actualResult = this._alphaGo.makeOneWinWay();
 
 		assertEquals("A", actualResult.get(0));
 		assertEquals("C", actualResult.get(1));
@@ -62,7 +62,7 @@ public class AlphaGo_MakeOneActionToHaveOnetWinningWay_Test {
 	
 
 		this._outputController.printGameBoard(gameBoard);
-		List actualResult = this._alphaGo.makeOneActionToHaveOnetWinningWay();
+		List actualResult = this._alphaGo.makeOneWinWay();
 
 		assertEquals("D", actualResult.get(0));
 	}
