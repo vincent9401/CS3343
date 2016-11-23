@@ -1,28 +1,21 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class GameBoard implements Cloneable{
 	
-			
-		private String[][] _gameBoard;
+	private String[][] _gameBoard;
 			
 	public GameBoard(){
 		String[][] gameBoard = new String[GameInstances.BOARD_ROW][GameInstances.BOARD_COLUMN];
 		this._gameBoard = gameBoard;
 	}
 	
-
 	public void initializeGameBoard() {
 		for (int i = 0; i < this._gameBoard.length; i++) {
 			for (int j = 0; j < this._gameBoard[i].length; j++) {
 				this._gameBoard[i][j] = "*";
 			}
-		}
-		
+		}	
 	}
 	
-	public boolean removeTokenOnGameBoard(String inputColumn){
-		
+	public boolean removeTokenOnGameBoard(String inputColumn){	
 		for(int i =  this._gameBoard.length -1; i >= 0; i--){
 			int column = GameInstances.COLUMN_MAP.get(inputColumn);
 			if(this._gameBoard[i][column].equals("*")) {
@@ -30,11 +23,8 @@ public class GameBoard implements Cloneable{
 				return true;
 			}
 		}
-		return false;
-		
+		return false;	
 	}
-	
-	
 	
 	// Put a token into the game board
 	public boolean putTokenIntoGameBoard(String inputColumn, boolean playerRound) {
@@ -50,8 +40,7 @@ public class GameBoard implements Cloneable{
 				return true;
 			}
 		}
-		return false;
-			
+		return false;	
 	}
 	
 	public String[][] getGameBoard(){
@@ -71,29 +60,22 @@ public class GameBoard implements Cloneable{
 		return true;
 	}
 	
-	public ConnectedBlock ConnectFourInColumn(String playerSymbol){
+	public ConnectedBlock ConnectFourInColumn(String playerSymbol) {
 		int startColumn = -1;
 		int startRow = -1;
 		int endRow = -1;
 		
-		
-		for(int column = 0; column < GameInstances.BOARD_COLUMN; column++){
+		for (int column = 0; column < GameInstances.BOARD_COLUMN; column++) {
 			startColumn = column;
-			for(int row = GameInstances.BOARD_ROW-1; row >= 0; row--){
-				
-				
-				
+			for(int row = GameInstances.BOARD_ROW-1; row >= 0; row--) {
 				if((this._gameBoard[row][column]).equals("*")){
-					
 					break;
-				}
-				else if((this._gameBoard[row][column]).equals(playerSymbol)){
+				} else if((this._gameBoard[row][column]).equals(playerSymbol)) {
 					if(startRow < 0 ){
 						startRow = row;
 					}
 					endRow = row;
-				}
-				else{
+				} else {
 					startRow = -1;
 					endRow = -1;
 				}
@@ -108,7 +90,6 @@ public class GameBoard implements Cloneable{
 			startRow = -1;
 			endRow = -1;
 		}
-		
 		return null;
 	}
 	
@@ -119,29 +100,24 @@ public class GameBoard implements Cloneable{
 		
 		for(int row = GameInstances.BOARD_ROW-1; row >= 0; row--){
 			startRow = row;	
-			for(int column = 0; column < GameInstances.BOARD_COLUMN; column++){
-				
+			for (int column = 0; column < GameInstances.BOARD_COLUMN; column++) {
 				//System.out.println(" row : "+row+" column : "+column+" startRow : "+ startRow+" endRow : "+ startRow);
-				
-				if((this._gameBoard[row][column]).equals(playerSymbol)){
-					if(startColumn < 0 ){
+				if ((this._gameBoard[row][column]).equals(playerSymbol)) {
+					if (startColumn < 0 ) {
 						startColumn = column;
 					}
 					endColumn = column;
-				}
-				else{
+				} else {
 					startColumn = -1;
 					endColumn = -1;
 				}
 				
-				if((endColumn - startColumn) >= 3){
+				if ((endColumn - startColumn) >= 3) {
 					ConnectedBlock cb = new ConnectedBlock(startRow, startColumn, startRow, endColumn, GameInstances.CONNECT_TYPE[1]);
 					return cb;
 				}
-				
 			}
 		}
-			
 		return null;
 	}
 	
@@ -156,10 +132,8 @@ public class GameBoard implements Cloneable{
 		boolean isContinue = true;  
 		
 		while(isContinue){
-			
 			//System.out.println("");
 			//System.out.println("Outer_Row: "+currentRow +" Outer_Column: "+ currentColumn);
-
 			
 			int innerRow = currentRow;
 			int innerColumn = currentColumn;
@@ -169,9 +143,7 @@ public class GameBoard implements Cloneable{
 			int endColumn = -1;
 			
 			while((innerRow < GameInstances.BOARD_ROW) && (innerColumn < GameInstances.BOARD_COLUMN)){
-				
 				//System.out.println("inner_Row: " + innerRow +" inner_column: "+innerColumn);
-				
 				if((this._gameBoard[innerRow][innerColumn]).equals(playerSymbol)){
 					if(startColumn < 0 ){
 						startRow = innerRow;
@@ -179,8 +151,7 @@ public class GameBoard implements Cloneable{
 					}
 					endRow = innerRow;
 					endColumn = innerColumn;
-				}
-				else{
+				} else {
 					startRow = -1;
 					startColumn= -1;
 					endRow = -1;
@@ -194,24 +165,19 @@ public class GameBoard implements Cloneable{
 					ConnectedBlock cb = new ConnectedBlock(startRow, startColumn, endRow, endColumn, GameInstances.CONNECT_TYPE[2]);
 					return cb;
 				}
-				
 				innerRow++;
 				innerColumn++;
 			}
-				
 			currentRow--;
 			
 			if( currentRow < 0){
 				currentRow = FINAL_CHECK_ROW;
 				currentColumn++;
 			}
-			
 			isContinue = !(currentColumn >= FINAL_CHECK_COLUMN );	
 		}
-			
 		return null;
 	}
-	
 	
 	public ConnectedBlock ConnectFourInLeftSlope(String playerSymbol){
 		final int INIT_CHECKING_ROW = 0;
@@ -223,12 +189,9 @@ public class GameBoard implements Cloneable{
 		int currentColumn = INIT_CHECKING_COLUMN;
 		boolean isContinue = true;  
 		
-		
 		while(isContinue){
-			
 			//System.out.println("");
 			//System.out.println("Outer_Row: "+currentRow +" Outer_Column: "+ currentColumn);
-
 			
 			int innerRow = currentRow;
 			int innerColumn = currentColumn;
@@ -241,15 +204,14 @@ public class GameBoard implements Cloneable{
 				
 				//System.out.println("inner_Row: " + innerRow +" inner_column: "+innerColumn);
 				
-				if((this._gameBoard[innerRow][innerColumn]).equals(playerSymbol)){
+				if ((this._gameBoard[innerRow][innerColumn]).equals(playerSymbol)) {
 					if(startColumn < 0 ){
 						startRow = innerRow;
 						startColumn = innerColumn;
 					}
 					endRow = innerRow;
 					endColumn = innerColumn;
-				}
-				else{
+				} else {
 					startRow = -1;
 					startColumn= -1;
 					endRow = -1;
@@ -259,35 +221,29 @@ public class GameBoard implements Cloneable{
 				
 				int difference = endRow - startRow;
 				difference = (difference > 0) ? difference : -difference;
-				if(difference >= 3){
+				if (difference >= 3) {
 					ConnectedBlock cb = new ConnectedBlock(startRow, startColumn, endRow, endColumn, GameInstances.CONNECT_TYPE[3]);
 					return cb;
 				}
-				
 				innerRow--;
 				innerColumn++;
 			}
 				
 			currentRow++;
 			
-			if( currentRow > FINAL_CHECK_ROW){
+			if (currentRow > FINAL_CHECK_ROW) {
 				currentRow = FINAL_CHECK_ROW;
 				currentColumn++;
 			}
-			
 			isContinue = !(currentColumn >= FINAL_CHECK_COLUMN );	
 		}
 			
 		return null;
 	}
 
-
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}
-	
-	
-	
 	
 }

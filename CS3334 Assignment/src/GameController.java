@@ -23,8 +23,7 @@ public class GameController {
 		
 		if(tmp <= 50){
 			return true;
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
@@ -33,10 +32,10 @@ public class GameController {
 		while(true){
 			Scanner sc = new Scanner(System.in);
 			String input = sc.next();
+			sc.close();
 			if(!Arrays.asList(GameInstances.COLUMN_NAME).contains(input)){
 				this._outputController.printMessage(GameInstances.INCORRECT_COLUMN_INDEX);
-			}
-			else{
+			} else {
 				return input;
 			}
 		} 
@@ -51,8 +50,6 @@ public class GameController {
 		String message = playerRound ? GameInstances.PLAYER_FIRST : GameInstances.ROBOT_FIRST;
 		outputController.printMessage(message);
 		
-		
-		
 		while((this.isWin() == 0) && !gameBoard.isGameBoardFull()){
 			outputController.printGameBoard(gameBoard);
 			String input;
@@ -64,7 +61,6 @@ public class GameController {
 				playerRound = false;
 			}
 			else{// playerRound = false -> means that there is the robot round
-				
 				input = this._alphaGo.decideNextAction();
 				System.out.println(input);
 				
@@ -77,7 +73,6 @@ public class GameController {
 		}
 		
 		outputController.printGameBoard(gameBoard);
-		
 	}
 	
 	public int isWin(){
@@ -109,9 +104,7 @@ public class GameController {
 			if(result>0){
 				return result;
 			}
-			
 		}
-		
 		return 0;
 	}
 }

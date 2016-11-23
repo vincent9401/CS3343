@@ -17,6 +17,7 @@ public class GameInstances {
 	public static final int BOARD_ROW = 6;
 	public static final int BOARD_COLUMN = 7;
 	public static final String[] COLUMN_NAME = {"A", "B", "C", "D", "E", "F", "G", "a", "b", "c", "d", "e", "f", "g"};
+	@SuppressWarnings("serial")
 	public static final Map<String, Integer> COLUMN_MAP = new HashMap<String, Integer>()
 	{{
 		put("A", 0);
