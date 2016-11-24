@@ -4,9 +4,8 @@ import java.util.Scanner;
 
 public class GameController {
 	
-	private GameBoard _gameBoard;
+	private GameBoard gameBoard;
 	private GameScreenOutputController _outputController;
-	private AlphaGo _alphaGo;
 	private static GameController instance = new GameController();
 	
 	public static GameController getInstance(){
@@ -14,13 +13,12 @@ public class GameController {
 	}
 	
 	private GameController(){
-		this._gameBoard = new GameBoard();
+		this.gameBoard = GameBoard.getInstance();
 		this._outputController = new GameScreenOutputController();
-		this._alphaGo = new AlphaGo(this._gameBoard);
 	}
 	
 	public void setGameBoard(GameBoard gameBoard){
-		this._gameBoard = gameBoard;
+		this.gameBoard = gameBoard;
 	}
 	
 	public boolean isPlayerFirst(){
@@ -49,7 +47,8 @@ public class GameController {
 	}
 	
 	public void playGame(){
-		GameBoard gameBoard = this._gameBoard;
+		AlphaGo AI = new AlphaGo();
+		GameBoard gameBoard = this.gameBoard;
 		GameScreenOutputController outputController = this._outputController;
 		gameBoard.initializeGameBoard();
 		
@@ -59,25 +58,29 @@ public class GameController {
 		
 		
 		
-		while((this.isWin() == 0) && !gameBoard.isFull()){
+		while((isWin()==0) && !gameBoard.isFull()){
 			outputController.printGameBoard(gameBoard);
-			String input;
+			String playerMove;
+			String AI_Move;
 			if(playerRound){// playerRound = true -> means that there is the human player round
 				outputController.printMessage(GameInstances.INPUT_OPTION_MENU);
-				input = this.getColumnIndex();
-				outputController.printMessage(GameInstances.SHOW_INPUTED_COLUMN_INDEX + input+"\n");
-				gameBoard.putTokenIntoGameBoard(input, true);
+				playerMove = this.getColumnIndex();
+				outputController.printMessage(GameInstances.SHOW_INPUTED_COLUMN_INDEX + playerMove+"\n");
+				gameBoard.putTokenIntoGameBoard(playerMove, true);
 				playerRound = false;
 			}
 			else{// playerRound = false -> means that there is the robot round
 				
-				input = this._alphaGo.decideNextAction();
-				System.out.println(input);
+				AI_Move = AI.decideNextAction();
+				
+				if(AI_Move == null) System.out.println("FUCKMKT");
+				
+				System.out.println(AI_Move);
 				
 				System.out.println("before put token to board");
 				this._outputController.printGameBoard(gameBoard);
 				
-				gameBoard.putTokenIntoGameBoard(input, false);
+				gameBoard.putTokenIntoGameBoard(AI_Move, false);
 				playerRound = true;
 			}
 		}
@@ -86,28 +89,29 @@ public class GameController {
 		
 	}
 	
+
 	public int isWin(){
 		int result = 0;
 		String[] tokens = {GameInstances.PLAYER_TOKEN, GameInstances.ROBOT_TOKEN};
 		ConnectedBlock cb;
 		for(int i = 0; i<tokens.length; i++){
 			result = 0;
-			cb =  this._gameBoard.connectFourInColumn(tokens[i]);
+			cb =  this.gameBoard.connectFourInColumn(tokens[i], 3);
 			if(!(cb == null)){
 				result++;
 			}
 			
-			cb =  this._gameBoard.ConnectFourInRow(tokens[i]);
+			cb =  this.gameBoard.connectFourInRow(tokens[i]);
 			if(!(cb == null)){
 				result++;
 			}
 			
-			cb =  this._gameBoard.ConnectFourInRightSlope(tokens[i]);
+			cb =  this.gameBoard.connectFourInRightSlope(tokens[i]);
 			if(!(cb == null)){
 				result++;
 			}
 			
-			cb =  this._gameBoard.ConnectFourInLeftSlope(tokens[i]);
+			cb =  this.gameBoard.connectFourInLeftSlope(tokens[i]);
 			if(!(cb == null)){
 				result++;
 			}

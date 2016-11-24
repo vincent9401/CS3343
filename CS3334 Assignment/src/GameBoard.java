@@ -3,12 +3,16 @@ import java.util.Map;
 
 public class GameBoard implements Cloneable{
 	
-			
+	private static GameBoard instance = new GameBoard();		
 	private String[][] _gameBoard;
 			
-	public GameBoard(){
+	private GameBoard(){
 		String[][] gameBoard = new String[GameInstances.BOARD_ROW][GameInstances.BOARD_COLUMN];
 		this._gameBoard = gameBoard;
+	}
+	
+	public static GameBoard getInstance(){
+		return instance;
 	}
 	
 
@@ -21,16 +25,14 @@ public class GameBoard implements Cloneable{
 		
 	}
 	
-	public boolean removeTokenOnGameBoard(String inputColumn){
+	public void removeTokenOnGameBoard(String inputColumn){
 		
 		for(int i = (this._gameBoard.length -1); i >= 0; i--){
 			int column = GameInstances.COLUMN_MAP.get(inputColumn);
 			if(this._gameBoard[i][column].equals("*")) {
 				this._gameBoard[i+1][column] = "*";
-				return true;
 			}
 		}
-		return false;
 		
 	}
 	
@@ -71,20 +73,18 @@ public class GameBoard implements Cloneable{
 		return true;
 	}
 	
-	public ConnectedBlock connectFourInColumn(String playerSymbol){
+	public ConnectedBlock connectFourInColumn(String playerSymbol, int length){
 		int startColumn = -1;
 		int startRow = -1;
 		int endRow = -1;
 		
 		
 		for(int column = 0; column < GameInstances.BOARD_COLUMN; column++){
+			
 			startColumn = column;
-			for(int row = GameInstances.BOARD_ROW-1; row >= 0; row--){
-				
-				
-				
-				if((this._gameBoard[row][column]).equals("*")){
-					
+			
+			for(int row = GameInstances.BOARD_ROW-1; row >= 0; row--){				
+				if((this._gameBoard[row][column]).equals("*")){					
 					break;
 				}
 				else if((this._gameBoard[row][column]).equals(playerSymbol)){
@@ -96,11 +96,9 @@ public class GameBoard implements Cloneable{
 				else{
 					startRow = -1;
 					endRow = -1;
-				}
+				}	
 				
-				//System.out.println(" row : "+row+" column : "+column+" startRow : "+ startRow+" endRow : "+ endRow);
-				
-				if((startRow - endRow) >= 3){
+				if((startRow - endRow) == length){
 					ConnectedBlock cb = new ConnectedBlock(startRow, startColumn, endRow, startColumn, GameInstances.CONNECT_TYPE[0]);
 					return cb;
 				}
@@ -112,7 +110,7 @@ public class GameBoard implements Cloneable{
 		return null;
 	}
 	
-	public ConnectedBlock ConnectFourInRow(String playerSymbol){
+	public ConnectedBlock connectFourInRow(String playerSymbol){
 		int startColumn = -1;
 		int endColumn = -1;
 		int startRow = -1;
@@ -145,7 +143,7 @@ public class GameBoard implements Cloneable{
 		return null;
 	}
 	
-	public ConnectedBlock ConnectFourInRightSlope(String playerSymbol){
+	public ConnectedBlock connectFourInRightSlope(String playerSymbol){
 		final int INIT_CHECKING_ROW = GameInstances.BOARD_ROW-1;
 		final int INIT_CHECKING_COLUMN = 0;
 		final int FINAL_CHECK_ROW = 0;
@@ -213,7 +211,7 @@ public class GameBoard implements Cloneable{
 	}
 	
 	
-	public ConnectedBlock ConnectFourInLeftSlope(String playerSymbol){
+	public ConnectedBlock connectFourInLeftSlope(String playerSymbol){
 		final int INIT_CHECKING_ROW = 0;
 		final int INIT_CHECKING_COLUMN = 0;
 		final int FINAL_CHECK_ROW = GameInstances.BOARD_ROW-1;
@@ -281,6 +279,34 @@ public class GameBoard implements Cloneable{
 		return null;
 	}
 
+	public boolean hasConnection(String token){
+		
+		boolean result = false;
+		ConnectedBlock cb;
+		
+		cb =  connectFourInColumn(token, 3);
+		if(!(cb == null)){
+			result = true;
+		}
+		
+		cb =  connectFourInRow(token);
+		if(!(cb == null)){
+			result = true;
+		}
+		
+		cb =  connectFourInRightSlope(token);
+		if(!(cb == null)){
+			result = true;
+		}
+		
+		cb =  connectFourInLeftSlope(token);
+		if(!(cb == null)){
+			result = true;
+		}
+		
+		return result;
+	}
+	
 
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
