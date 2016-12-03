@@ -1,4 +1,10 @@
-public class GameBoard implements Cloneable{
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+public class GameBoard implements Cloneable, Serializable {
 	
 	private String[][] _gameBoard;
 			
@@ -240,10 +246,26 @@ public class GameBoard implements Cloneable{
 			
 		return null;
 	}
+	
+	
 
 	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		return super.clone();
+	protected GameBoard clone(){
+		GameBoard clonedObj = null;
+	    try {
+	      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	      ObjectOutputStream oos = new ObjectOutputStream(baos);
+	      oos.writeObject(this);
+	      oos.close();
+
+	      ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+	      ObjectInputStream ois = new ObjectInputStream(bais);
+	      clonedObj = (GameBoard) ois.readObject();
+	      ois.close();
+	    } catch (Exception cnfe) {
+	      System.out.println("Class not found " + cnfe);
+	    }
+	    return clonedObj;
 	}
 	
 }

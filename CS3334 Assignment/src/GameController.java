@@ -61,10 +61,6 @@ public class GameController {
 			}
 			else{// playerRound = false -> means that there is the robot round
 				input = this._alphaGo.decideNextAction();
-				System.out.println(input);
-				
-				System.out.println("before put token to board");
-				this._outputController.printGameBoard(gameBoard);
 				
 				gameBoard.putTokenIntoGameBoard(input, false);
 				playerRound = true;

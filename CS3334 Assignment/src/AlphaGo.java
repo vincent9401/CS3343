@@ -4,11 +4,8 @@ import java.util.Random;
 
 public class AlphaGo {
 	private GameBoard _gameboard;
-	private GameScreenOutputController _outputController;
-	
 	public AlphaGo(GameBoard gameboard) {
 		this._gameboard = gameboard;
-		this._outputController = new GameScreenOutputController();	
 	}
 	
 	public String decideNextAction() {
@@ -17,44 +14,28 @@ public class AlphaGo {
 		List<String> possibleActions;
 		Random rand = new Random();
 		
-		System.out.println("Inner Code");
-		this._outputController.printGameBoard(this._gameboard);
-		
 		try {
-			System.out.println("Robot WinByOneAction");
-			this._outputController.printGameBoard(this._gameboard);
-			
 			action = this.WinByOneAction();
 			if(!(action == null)){
 				return action;
 			}
 			
-			System.out.println("player WinByOneAction");
-			this._outputController.printGameBoard(this._gameboard);
 			
 			action = this.BlockPlayerWinByOneAction();
 			if(!(action == null)){
 				return action;
 			}
 			
-			System.out.println("Robot MakeOneActionToHaveTwoDifferentWinningWays");
-			this._outputController.printGameBoard(this._gameboard);
-			
 			action = this.MakeOneActionToHaveTwoDifferentWinningWays();
 			if(!(action == null)){
 				return action;
 			}
-			
-			System.out.println("player MakeOneActionToHaveTwoDifferentWinningWays");
-			this._outputController.printGameBoard(this._gameboard);
 			
 			action = this.BlockPlayerMakeOneActionToHaveTwoDifferentWinningWays();
 			if(!(action == null)){
 				return action;
 			}
 			
-			System.out.println("Robot MakeOneActionToHaveOnetWinningWay");
-			this._outputController.printGameBoard(this._gameboard);
 			
 			possibleActions = this.MakeOneActionToHaveOneWinningWay();
 			if(!(possibleActions.isEmpty())){
@@ -62,8 +43,6 @@ public class AlphaGo {
 				return possibleActions.get(n);
 			}
 			
-			System.out.println("Robot posibleSeconTokenInput");
-			this._outputController.printGameBoard(this._gameboard);
 			
 			possibleActions = this.possibleSeconTokenInput();
 			if(!(possibleActions.isEmpty())){
@@ -71,8 +50,6 @@ public class AlphaGo {
 				return possibleActions.get(n);
 			}
 			
-			System.out.println("Before return from AlphaGo");
-			this._outputController.printGameBoard(this._gameboard);
 			
 			return checkingColumns[rand.nextInt(checkingColumns.length)];
 				
