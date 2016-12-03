@@ -9,6 +9,10 @@ public class GameInstances {
 	public final static String INPUT_OPTION_MENU = "Which column you want to input? (A-G): ";
 	public final static String INCORRECT_COLUMN_INDEX = "Invalid column, input again!: ";
 	public final static String SHOW_INPUTED_COLUMN_INDEX = "Your input: ";
+	public final static String WIN_BY_ROBOT = "You lost the game !";
+	public final static String WIN_BY_HUMAN = "You Winned the game !";
+	public final static String GAME_BOARD_FULLED = "No one win the game !";
+	public final static String ROBOT_ACTION_MESSAGE = "Robut put token in column : ";
 	
 	public final static String[] CONNECT_TYPE = {"column_connect", "row_connect", "Right_slope_connect", "left_slope_connect"};
 	

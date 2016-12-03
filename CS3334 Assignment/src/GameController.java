@@ -50,9 +50,9 @@ public class GameController {
 		outputController.printMessage(message);
 		
 		while((this.isWin() == 0) && !gameBoard.isGameBoardFull()){
-			outputController.printGameBoard(gameBoard);
 			String input;
 			if(playerRound){// playerRound = true -> means that there is the human player round
+				outputController.printGameBoard(gameBoard);
 				outputController.printMessage(GameInstances.INPUT_OPTION_MENU);
 				input = this.getColumnIndex();
 				outputController.printMessage(GameInstances.SHOW_INPUTED_COLUMN_INDEX + input+"\n");
@@ -61,13 +61,24 @@ public class GameController {
 			}
 			else{// playerRound = false -> means that there is the robot round
 				input = this._alphaGo.decideNextAction();
-				
 				gameBoard.putTokenIntoGameBoard(input, false);
+				outputController.printGameBoard(gameBoard);
+				this._outputController.printMessage(GameInstances.ROBOT_ACTION_MESSAGE+input+"\n");
 				playerRound = true;
 			}
 		}
 		
-		outputController.printGameBoard(gameBoard);
+		if(this.isWin() > 0){
+			String winningResult = playerRound ? GameInstances.WIN_BY_ROBOT : GameInstances.WIN_BY_HUMAN;
+			this._outputController.printMessage(winningResult);
+			this._outputController.printGameBoard(gameBoard);
+			return;
+		}
+		if(gameBoard.isGameBoardFull()){
+			this._outputController.printMessage(GameInstances.GAME_BOARD_FULLED);
+			this._outputController.printGameBoard(gameBoard);
+			return;
+		}
 	}
 	
 	public int isWin(){
